@@ -121,6 +121,7 @@
     } else if ([trimmedText length] > 0) {
         [_parentField.textField setText:trimmedText];
         [_parentField.textField becomeFirstResponder];
+        [self deleteBackward];
     } else {
         [self resignFirstResponder];
     }
