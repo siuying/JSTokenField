@@ -113,6 +113,17 @@
     return NO;
 }
 - (void)insertText:(NSString *)text {
+    NSString *trimmedText = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if ([text hasPrefix:@"\n"]) {
+        [_parentField.textField setText:nil];
+        [_parentField.textField becomeFirstResponder];
+    } else if ([trimmedText length] > 0) {
+        [_parentField.textField setText:trimmedText];
+        [_parentField.textField becomeFirstResponder];
+        [self deleteBackward];
+    } else {
+        [self resignFirstResponder];
+    }
     return;
 }
 
